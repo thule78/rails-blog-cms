@@ -1,0 +1,12 @@
+<div class="container">
+  <% @articles.each do |article| %>
+  <%= link_to article_path(article), :action => 'go' do %>
+  <div>
+    <div>
+      <h3><%= article.title%></h3>
+      <p><%= article.content.first(70) %>...</p>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
