@@ -3,7 +3,7 @@
   <% if article.errors.any? %>
     <div>
       <ul>
-      <% tour.errors.full_messages.each do |message| %>
+      <% article.errors.full_messages.each do |message| %>
       <li><%= message %></li>
       <% end %>
     </ul>
