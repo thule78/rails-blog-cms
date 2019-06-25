@@ -1,37 +1,39 @@
 <%= simple_form_for(article) do |f|%>
 
-  <% if article.errors.any? %>
-    <div>
-      <ul>
-      <% article.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-    </div>
+<% if article.errors.any? %>
+<div>
+  <ul>
+    <% article.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
-  <div class="form-group">
-    <%= f.input :title, :placeholder => 'Article Name', class: 'form-control'%>
-  </div>
-   <div class="form-group">
-
-<div class="row">
-
-<div class="col-sm-offset-2 col-sm-8">
-
-<%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-
-<% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-
+  </ul>
+</div>
 <% end %>
-
+<div class="form-group">
+  <%= f.input :title, :placeholder => 'Article Name', class: 'form-control'%>
 </div>
+<div class="form-group">
+  <label>Select Categories</label>
 
-</div>
+  <div class="row">
 
-</div>
-  <div class="form-group">
-    <%= f.input :content, :placeholder => 'Article content', class: 'form-control'%>
+    <div class="col-sm-offset-2 col-sm-8">
+
+
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+
+      <%= cb.label(class: 'checkbox-inline input_checkbox') {cb.check_box(class: "checkbox") + " " + cb.text} %>
+
+      <% end %>
+
+    </div>
+
   </div>
-  <%= f.submit class: 'btn btn-info' %>
-  <%= f.button :button, 'Cancel', type: :reset, class: 'btn btn-outline-info' %>
+
+</div>
+<div class="form-group">
+  <%= f.input :content, :placeholder => 'Article content', class: 'form-control'%>
+</div>
+<%= f.submit class: 'btn btn-info' %>
+<%= f.button :button, 'Cancel', type: :reset, class: 'btn btn-outline-info' %>
 <% end %>
