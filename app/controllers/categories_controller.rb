@@ -31,10 +31,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
+    category = current_user.categories.find(params[:id])
     authorize @category
-    @category.update(category_params)
-    redirect_to categories_path
+    if  category.update(category_params)
+        redirect_to categories_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -49,4 +52,5 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
 
   end
+
 end
