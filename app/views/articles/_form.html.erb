@@ -12,25 +12,16 @@
 <div class="form-group">
   <%= f.input :title, :placeholder => 'Article Name', class: 'form-control'%>
 </div>
-<div class="form-group">
-  <label>Select Categories</label>
-
-  <div class="row">
-
-    <div class="col-sm-offset-2 col-sm-8">
-
-
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-
-      <%= cb.label(class: 'checkbox-inline input_checkbox') {cb.check_box(class: "checkbox") + " " + cb.text} %>
-
-      <% end %>
-
+     <div class="form-row">
+      <div class="offset-sm-2 col-sm-8">
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, {},
+                                     {:class=>'form-check-input mr-1'} do |cb| %>
+          <div class="form-check form-check-inline">
+            <%= cb.label(class: "form-check-label pr-2") {cb.check_box + cb.text} %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-  </div>
-
-</div>
 <div class="form-group">
   <%= f.input :content, :placeholder => 'Article content', class: 'form-control'%>
 </div>
