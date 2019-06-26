@@ -14,14 +14,14 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def edit
-    true
+    user.article.any?
   end
 
   def update
-    true
+    record.writer == user
   end
 
   def destroy
-    true
+    record.writer == user
   end
 end

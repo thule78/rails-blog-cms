@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 class="my-3">You have <%= pluralize current_user.articles.count, "article" %></h2>
+  <%if policy(Article).edit? %>
+  <% @articles.each do |article| %>
+  <%= link_to article_path(article), :action => 'go' do %>
+  <div>
+    <div>
+      <h3><%= article.title%></h3>
+      <div class="action d-flex justify-content-center">
+        <%= link_to raw('<i class="far fa-edit"></i>'),  edit_writers_article_path(article), class: "mr-2" %>
+        <%= link_to raw('<i class="far fa-trash-alt"></i>'), writers_article_path(article), method: "delete", data: { confirm: "Are you sure you want to delete '#{article.title}'?" } %>
+      </div>
+      <p><%= article.content%></p>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
